@@ -79,6 +79,16 @@ $f3->route('GET|POST /order',
             }
         }
 
+        if(isset($_POST['qty'])){
+            $qty = $_POST['qty'];
+            if(validQty($qty)){
+                $_SESSION['qty'] = $qty;
+                $f3->reroute('/order2');
+            }else{
+                $f3->set("errors['qty']", "Please enter a number greater than 0.");
+            }
+        }
+
     //Display an order view
     $view = new Template();
     echo $view->render('views/form1.html');
