@@ -1,0 +1,18 @@
+{
+  "name": "anava4/328/pets4",
+  "authors": [
+    {
+      "name": "Andrew Nava",
+      "email": "anava4@mail.greenriver.edu"
+    },
+    {
+      "name": "Alvin Nava",
+      "email": "anava8@mail.greenriver.edu"
+    }
+  ],
+
+  "require":
+  {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
