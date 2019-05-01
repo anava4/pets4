@@ -9,10 +9,17 @@
     <label>Animal
         <input type="text" name="animal">
     </label>
-    <input type="submit" value="Next">
+
     <check if="{{ @errors['animal'] }}">
         <span class="err">{{ @errors['animal'] }}</span>
     </check><br><br>
+    <label>Quantity
+        <input type="text" name="qty" value="{{ @qty }}">
+    </label>
+    <check if="{{ @errors['qty'] }}">
+        <span class="err">{{ @errors['qty'] }}</span>
+    </check>
+    <input type="submit" value="Next">
 </form>
 
 </body>
