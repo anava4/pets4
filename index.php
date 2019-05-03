@@ -64,12 +64,10 @@ $f3->route('GET /@animal', function($f3,$params)
 });
 
 //Define a order route
-$f3->route('GET|POST /order',
-
-    function($f3){
+$f3->route('GET|POST /order', function($f3){
         $_SESSION = array();
 
-        if(isset($_POST['animal'])){
+        /*if(isset($_POST['animal'])){
             $animal = $_POST['animal'];
             if(validString($animal)){
                 $_SESSION['animal'] = $animal;
@@ -86,6 +84,29 @@ $f3->route('GET|POST /order',
                 $f3->reroute('/order2');
             }else{
                 $f3->set("errors['qty']", "Please enter a number greater than 0.");
+            }
+        }*/
+
+        if(!empty($_POST)) {
+            $animal = $_POST['animal'];
+            $qty = $_POST['qty'];
+
+            $f3->set('animal', $animal);
+            $f3->set('qty', $qty);
+
+
+            if (isset($_POST['animal']) && isset($_POST['qty'])) {
+                $animal = $_POST['animal'];
+                $qty = $_POST['qty'];
+                if (validString($animal) && validQty($qty)) {
+                    $_SESSION['animal'] = $qty;
+                    $_SESSION['qty'] = $qty;
+                    $f3->reroute('/order2');
+                } else {
+                    $f3->set("errors['animal']", "Please enter an animal.");
+                    $f3->set("errors['qty']", "Please enter a number greater than 0.");
+                }
+
             }
         }
 
