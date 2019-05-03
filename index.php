@@ -117,8 +117,7 @@ $f3->route('GET|POST /order', function($f3){
 );
 
 //Define a order2 route
-$f3->route('GET|POST /order2',
-    function($f3){
+$f3->route('GET|POST /order2', function($f3){
 
 
         if(isset($_POST['color'])){

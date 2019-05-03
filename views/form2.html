@@ -14,12 +14,19 @@
                 <option>{{ @colorOption }}</option>
             </repeat>
         </select>
+        <check if="{{ @errors['colors'] }}">
+            <span class="err">{{ @errors['colors'] }}</span>
+        </check><br><br>
+    </label>
+
+
+    <label>Select toys for your pet:
 
     </label>
+
+
     <input type="submit" value="Place Order">
-    <check if="{{ @errors['colors'] }}">
-        <span class="err">{{ @errors['colors'] }}</span>
-    </check><br><br>
+
 </form>
 
 </body>
