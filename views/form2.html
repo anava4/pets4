@@ -21,7 +21,17 @@
 
 
     <label>Select toys for your pet:
+        <check if="{{ @errors['toys'] }}">
+            <span class="err">{{ @errors['toys'] }}</span>
+        </check><br>
 
+        <repeat group="{{ @toys1 }}" value="{{ @toysOption }}">
+            <label><input type="checkbox" name="toys[]" value="{{ @toysOption }}"
+                <check if="{{ !empty(@toys) && in_array(@toysOption, @toys) }}">
+                    checked="checked"
+                </check>
+                >{{ @toysOption }}</label><br>
+        </repeat>
     </label>
 
 

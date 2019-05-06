@@ -19,6 +19,7 @@ $f3->set('colors', array('pink','green','blue'));
 $f3->set('DEBUG',3);
 
 require_once('model/validation-functions.php');
+$f3->set('toys1', array('chew toy', 'bone', 'rope'));
 
 //Define a default route
 $f3->route('GET /', function()
@@ -99,7 +100,7 @@ $f3->route('GET|POST /order', function($f3){
                 $animal = $_POST['animal'];
                 $qty = $_POST['qty'];
                 if (validString($animal) && validQty($qty)) {
-                    $_SESSION['animal'] = $qty;
+                    $_SESSION['animal'] = $animal;
                     $_SESSION['qty'] = $qty;
                     $f3->reroute('/order2');
                 } else {
@@ -120,13 +121,18 @@ $f3->route('GET|POST /order', function($f3){
 $f3->route('GET|POST /order2', function($f3){
 
 
-        if(isset($_POST['color'])){
+        if(isset($_POST['color']) && ($_POST['toys'])){
             $color = $_POST['color'];
-            if(validString($color)){
+            $toys = $_POST['toys'];
+            //$_SESSION['toys'] = implode($_POST['toys']);
+            if(validString($color) && validToys($toys)){
                 $_SESSION['color'] = $color;
+                //$_SESSION['toys'] = $toys;
+                $_SESSION['toys'] = implode($_POST['toys']);
                 $f3->reroute('/results');
             }else{
                 $f3->set("errors['colors']", "Please enter a color.");
+                $f3->set("errors['toys1']", "Please select a toy.");
             }
         }
     //Display order received view
